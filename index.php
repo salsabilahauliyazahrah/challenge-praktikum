@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -24,11 +29,31 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <button class="btn btn-outline-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#wishlistModal" onclick="tampilkanwishlist()">
-                   ⭐ Wishlist (<span id="wishlistCount">0</span>)
-                </button>
-                
-                <button id="btn-theme" class="btn btn-outline-light btn-sm">Mode Gelap</button>
+                <div class="d-flex align-items-center gap-2">
+
+                    <button class="btn btn-outline-warning btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#wishlistModal"
+                        onclick="tampilkanwishlist()">
+                        ⭐ Wishlist (<span id="wishlistCount">0</span>)
+                    </button>
+
+                    <button id="btn-theme" class="btn btn-outline-light btn-sm">
+                        Mode Gelap
+                    </button>
+
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <a href="controller/logout.php" class="btn btn-outline-danger btn-sm">
+                            Logout
+                        </a>
+                        <span class="text-white">Halo, <?php echo $_SESSION['username']; ?></span>                        
+                    <?php else: ?>
+                        <a href="login.php" class="btn btn-warning btn-sm">
+                            Login
+                        </a>
+                    <?php endif; ?>
+
+                </div>
             </div>
         </div>
     </nav>
